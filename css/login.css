@@ -15,17 +15,23 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 900px;
+    transition: opacity 0.5s ease all;
+
 
 }
 .logForm {
     display: flex;
     gap: 50px;
     justify-content: space-around;
+    transition: opacity 0.5s ease all;
+
 }
 .regform{
     display: flex;
     justify-content: space-around;
     gap: 200px;
+    transition: opacity 0.5s ease all;
+
 }
 .logImage, .regImage{
     height: 90%;

@@ -15,91 +15,43 @@
         Welcome to CCS Sit-in
     </h1>
     <div class="container">
-    <?php
-        $showLogin = true;
 
-        if (isset($_GET['action']) && $_GET['action'] == 'register') {
-            $showLogin = false;
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST['register'])) {
-                // Collect and sanitize the form data
-                $id = $_POST['id'];
-                $lastname = $_POST['lastname'];
-                $firstname = $_POST['firstname'];
-                $midname = $_POST['midname'];
-                $course = $_POST['course'];
-                $year = $_POST['year'];
-                $email = $_POST['email'];
-                $username = $_POST['username'];
-                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-                // Store the user data in a file (including the new fields)
-                $userData = "$id|$lastname|$firstname|$midname|$course|$year|$email|$username|$password\n";
-                file_put_contents("users.txt", $userData, FILE_APPEND);
-
-                echo "<p>Registration successful! You can now <a href='?action=login'>login</a>.</p>";
-            } elseif (isset($_POST['login'])) {
-                // Handle login
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-
-                $users = file("users.txt", FILE_IGNORE_NEW_LINES);
-                $loginSuccess = false;
-
-                foreach ($users as $user) {
-                    list($storedId, $storedLastname, $storedFirstname, $storedMidname, $storedCourse, $storedYear, $storedEmail, $storedUsername, $storedPassword) = explode("|", $user);
-                    if ($username === $storedUsername && password_verify($password, $storedPassword)) {
-                        $loginSuccess = true;
-
-                        header("Location: UserDash.php");
-                        //echo "<p>Welcome, $storedFirstname $storedLastname!</p>";
-                        exit();
-                    }
-                }
-
-                if (!$loginSuccess) {
-                    echo "<p class='error'>Invalid username or password.</p>";
-                }
-            }
-        }
-        ?>
-
-
-        <?php if ($showLogin): ?>
+            <form action="register.php" id="logInForm">
             <!-- Login Form -->
-            <div class="logForm">
+                <div class="logForm">
 
-                <div class="logImage">
-                    <img src="./images/model2.jpg" alt="CCS Image" style="height: 40vh; width: 400px; vertical-align: middle; margin-right: 10px;">
+                    <div class="logImage">
+                        <img src="./images/model2.jpg" alt="CCS Image" style="height: 40vh; width: 400px; vertical-align: middle; margin-right: 10px;">
+                    </div>
+
+                    <div class="logfill">
+                        <h2>Login</h2>
+                        
+                        <form method="POST">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+
+                            <button type="submit" name="login" >Login</button>
+                        </form>
+                        <p>Don't have an account? <a style="color: #CF9D01; font-weight: 600; text-decoration: none; cursor:pointer;" id="registerBtn">Register here.</a></p>
+                    </div>
                 </div>
-
-                <div class="logfill">
-                    <h2>Login</h2>
-                    
-                    <form method="POST">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required>
-
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-
-                        <button type="submit" name="login">Login</button>
-                    </form>
-                    <p>Don't have an account? <a href="?action=register" style="color: #CF9D01; font-weight: 600; text-decoration: none">Register here.</a></p>
-                </div>
-            </div>
+            </form>
         
-        <?php else: ?>
+
             <!-- Registration Form -->
-            <form method="POST">
+
+            <form action="register.php" method="POST" id="signUpForm" style="display: none;">
                 <div class="regform">
                     <div class="regImage">
-                        <img src="./images/mod no bg.png" alt="CCS Image" style="height: 45vh; width: 450px; vertical-align: middle; margin-right: 5px;">
+                        <img src="./images/mod no bg.png" alt="CCS Image" style="height: 45vh; width: 450px; vertical-align: middle; margin-right: 5px; margin-top: 35px;">
                     </div>
 
                     <div class="regfillform">
+                        <h2>Register</h2>
                         <div class="form-row">
                             <div>
                                 <label for="id">IDNO:</label>
@@ -116,7 +68,7 @@
                                 <label for="firstname">First Name:</label>
                                 <input type="text" name="firstname" id="firstname" required>
                             </div>
-                            <div>
+                            <div>   
                                 <label for="midname">Middle Name:</label>
                                 <input type="text" name="midname" id="midname">
                             </div>
@@ -136,7 +88,7 @@
                         <div class="form-row">
                             <div>
                                 <label for="email">Email Address:</label>
-                                <input type="text" name="email" id="email" required>
+                                <input type="email" name="email" id="email" required>
                             </div>
 
                             <div>
@@ -149,14 +101,14 @@
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password" required>
                         </div>
-                        <button type="submit" name="register">Register</button>
-                        <p>Already have an account? <a href="?action=login"  style="color: #CF9D01; font-weight:600; text-decoration: none">Login here.</a></p>
+                        <button type="submit" name="register" id="regBtn">Register</button>
+                        <p>Already have an account? <a id="logInFormBtn" style="color: #CF9D01; font-weight:600; text-decoration: none; cursor: pointer;">Login here.</a></p>
 
                     </div>
                 </div>
             </form>
 
-         <?php endif; ?>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
