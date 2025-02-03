@@ -16,7 +16,7 @@
     </h1>
     <div class="container">
 
-            <form action="register.php" id="logInForm">
+            <form action="register.php" id="logInForm" method="POST" >
             <!-- Login Form -->
                 <div class="logForm">
 
@@ -27,7 +27,7 @@
                     <div class="logfill">
                         <h2>Login</h2>
                         
-                        <form method="POST">
+                        <form method="POST" >
                             <label for="username">Username:</label>
                             <input type="text" id="username" name="username" required>
 

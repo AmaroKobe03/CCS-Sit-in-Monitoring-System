@@ -48,24 +48,17 @@ if (isset($_POST['register'])) {
 }
 
 
-// Login function
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password']; 
+    // Login function
+    if (isset($_POST['login'])) {
+        echo"wasap";
+        $username = $_POST['username'];
+        $password = $_POST['password']; 
 
-    $sql = "SELECT * FROM users WHERE UserName = '$username' AND Password = '$password'";
+        $sql = "SELECT * FROM users WHERE UserName = '$username' AND Password = '$password'";
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $_SESSION['user_id'] = $row['IDNO']; 
-        $_SESSION['username'] = $row['UserName'];
-        // Redirect to a logged-in page
-        header("Location: Index.php"); 
-        exit(); 
-    } else {
-        echo "<script>alert('Invalid username or password.'); window.location.href = 'login.php';</script>";  
+        header("Location: UserDash.php"); 
+        exit();
     }
-}
 
-$conn->close();
+    $conn->close();
 ?>
