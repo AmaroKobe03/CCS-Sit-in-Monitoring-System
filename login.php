@@ -7,19 +7,22 @@
     <title>CCS sit-in</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    </style>
+
+   
+   
+   </style>
 </head>
 <body>
-    <h1 style="color: white;">
-        <img src="./images/ccs-logo.png" alt="CCS Image" style="height: 50px; vertical-align: middle; margin-right: 10px;">
-        Welcome to CCS Sit-in
-    </h1>
+ 
     <div class="container">
-
-            <form action="register.php" id="logInForm" method="POST" >
+            <h1 style="color: black; margin-left:7.5em;">
+                <img src="./images/ccs-logo.png" alt="CCS Image" style="height: 50px; vertical-align: middle; margin-right: 10px;">
+                Welcome to CCS Sit-in
+            </h1>
+            <form action="functions.php" id="logInForm" method="POST" >
             <!-- Login Form -->
                 <div class="logForm">
-
+        
                     <div class="logImage">
                         <img src="./images/model2.jpg" alt="CCS Image" style="height: 40vh; width: 400px; vertical-align: middle; margin-right: 10px;">
                     </div>
@@ -44,7 +47,7 @@
 
             <!-- Registration Form -->
 
-            <form action="register.php" method="POST" id="signUpForm" style="display: none;">
+            <form action="functions.php" method="POST" id="signUpForm" style="display: none;">
                 <div class="regform">
                     <div class="regImage">
                         <img src="./images/mod no bg.png" alt="CCS Image" style="height: 45vh; width: 450px; vertical-align: middle; margin-right: 5px; margin-top: 35px;">
@@ -54,8 +57,8 @@
                         <h2>Register</h2>
                         <div class="form-row">
                             <div>
-                                <label for="id">IDNO:</label>
-                                <input type="text" id="id" name="id" required>
+                                <label for="idno">IDNO:</label>
+                                <input type="text" id="idno" name="idno" required>
                             </div>
                             <div>
                                 <label for="lastname">Last Name:</label>
